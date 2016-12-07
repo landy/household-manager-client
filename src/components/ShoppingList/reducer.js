@@ -4,7 +4,7 @@ const initialState = {
     items: []
 };
 
-export const shoppingListReducer = (state = initialState, action) => {
+export default function shoppingListReducer (state = initialState, action) {
     switch (action.type) {
         case SHOPPING_LIST_LOAD: 
             return {
@@ -20,5 +20,7 @@ export const shoppingListReducer = (state = initialState, action) => {
                     count: 15
                 }]
             };
+        default:
+            return state;
     }
 };
