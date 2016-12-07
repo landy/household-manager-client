@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
-
+import React from 'react';
 import ShoppingList from '../components/ShoppingList/ShoppingList'
 
-export default class ShoppingListPage extends Component {
+class ShoppingListPage extends React.Component {
     render(){
+        const items = [{
+            id: 1,
+            name: 'foo',
+            count: 12
+        },
+        {
+            id: 2,
+            name: 'bar',
+            count: 15
+        }];
         return (
             <div>
-                <ShoppingList items={this.props.Items}/>
+                <ShoppingList items={items}/>
             </div>
-        )
+        );
     }
 }
+export default ShoppingListPage 

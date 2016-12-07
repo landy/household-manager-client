@@ -2,8 +2,8 @@ import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
 import { AppPage } from './pages/AppPage';
-import {HomePage} from './pages/HomePage'
-import { ShoppingListPage } from './pages/ShoppingListPage'
+import {HomePage} from './pages/HomePage';
+import ShoppingListPage from './pages/ShoppingListPage';
 
 export function createRoutes() {
   return (

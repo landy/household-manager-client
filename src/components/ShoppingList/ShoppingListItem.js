@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ShoppingListItem extends Component {
-    render(){
-        const item = this.props.item
-        return (<div>{item.name}: {item.count}</div>);
-    }
-}
+const ShoppingListItem =  ({item}) => 
+    <div>{item.name}: {item.count}</div>;
+
+export default ShoppingListItem;
