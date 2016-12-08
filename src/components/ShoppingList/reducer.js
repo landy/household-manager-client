@@ -11,12 +11,12 @@ export default function shoppingListReducer (state = initialState, action) {
                 ...state,
                 items: [{
                     id: 1,
-                    name: 'foo',
+                    name: 'chleba',
                     count: 12
                 },
                 {
                     id: 2,
-                    name: 'bar',
+                    name: 'rohliky',
                     count: 15
                 }]
             };

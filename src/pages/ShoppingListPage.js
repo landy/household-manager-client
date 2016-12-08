@@ -1,23 +1,33 @@
 import React from 'react';
-import ShoppingList from '../components/ShoppingList/ShoppingList'
+import { connect } from 'react-redux';
 
-class ShoppingListPage extends React.Component {
+import ShoppingList from '../components/ShoppingList/ShoppingList'
+import {
+    loadShoppingListItems
+} from '../components/ShoppingList/actions';
+
+class ShoppingListPageRaw extends React.Component {
+    
     render(){
-        const items = [{
-            id: 1,
-            name: 'foo',
-            count: 12
-        },
-        {
-            id: 2,
-            name: 'bar',
-            count: 15
-        }];
         return (
             <div>
-                <ShoppingList items={items}/>
+                <ShoppingList items={this.props.items}/>
             </div>
         );
     }
+
+    componentDidMount(){
+        this.props.loadShoppingListItems();
+    }
 }
-export default ShoppingListPage 
+
+function mapStateToProps (state) {
+    const {shoppingList} = state;
+    return {
+        items: shoppingList.items
+    };
+}
+
+const ShoppingListPage = connect(mapStateToProps, {loadShoppingListItems})(ShoppingListPageRaw);
+
+export default ShoppingListPage;
