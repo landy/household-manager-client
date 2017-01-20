@@ -110,7 +110,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 :: call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
 
 :: IF !ERRORLEVEL! NEQ 0 goto error
-:: popd
+::  popd
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
