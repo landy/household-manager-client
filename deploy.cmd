@@ -88,8 +88,6 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-call :SelectNodeVersion
-
 echo "%DEPLOYMENT_TEMP%"
 ::IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
     echo building application
@@ -107,7 +105,7 @@ echo "%DEPLOYMENT_TEMP%"
 ::)
 
 :: 2. Select node version
-
+:: call :SelectNodeVersion
 
 :: 3. Install npm packages
 ::IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
