@@ -106,11 +106,11 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 )
 
 :: 4. Build application
-pushd "%DEPLOYMENT_TARGET%"
-::call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
+:: pushd "%DEPLOYMENT_TARGET%"
+:: call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
 
-IF !ERRORLEVEL! NEQ 0 goto error
-popd
+:: IF !ERRORLEVEL! NEQ 0 goto error
+:: popd
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 goto end
 
