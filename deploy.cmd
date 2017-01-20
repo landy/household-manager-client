@@ -89,14 +89,14 @@ goto :EOF
 echo Handling node.js deployment.
 
 echo "%DEPLOYMENT_TEMP%"
-IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
+::IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
     echo building application
     pushd "%DEPLOYMENT_TEMP%"
     call :ExecuteCmd !NPM_CMD! install 
     IF !ERRORLEVEL! NEQ 0 goto error
     call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
     IF !ERRORLEVEL! NEQ 0 goto error
-  )
+::)
 
 :: 1. KuduSync
 ::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
