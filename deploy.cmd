@@ -88,26 +88,35 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
+IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
+    echo building application
+    pushd "%DEPLOYMENT_TEMP%"
+    call :ExecuteCmd !NPM_CMD! install 
+    IF !ERRORLEVEL! NEQ 0 goto error
+    call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
+    IF !ERRORLEVEL! NEQ 0 goto error
+  )
+
 :: 1. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
+::IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+::  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+::  IF !ERRORLEVEL! NEQ 0 goto error
+::)
 
 :: 2. Select node version
 call :SelectNodeVersion
 
 :: 3. Install npm packages
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install 
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
+::IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+::  pushd "%DEPLOYMENT_TARGET%"
+::  call :ExecuteCmd !NPM_CMD! install 
+::  IF !ERRORLEVEL! NEQ 0 goto error
+::  popd
+::)
 
 :: 4. Build application
-:: pushd "%DEPLOYMENT_TARGET%"
-:: call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
+::pushd "%DEPLOYMENT_TARGET%"
+
 
 :: IF !ERRORLEVEL! NEQ 0 goto error
 ::  popd
