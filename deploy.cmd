@@ -88,15 +88,15 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
-echo "%DEPLOYMENT_TEMP%"
+::echo "%DEPLOYMENT_TEMP%"
 ::IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
-    echo building application
-    pushd "%DEPLOYMENT_TEMP%"
-    tree /f
-    call :ExecuteCmd !NPM_CMD! install 
-    IF !ERRORLEVEL! NEQ 0 goto error
-    call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
-    IF !ERRORLEVEL! NEQ 0 goto error
+::    echo building application
+::    pushd "%DEPLOYMENT_TEMP%"
+::    tree /f
+::    call :ExecuteCmd !NPM_CMD! install 
+::    IF !ERRORLEVEL! NEQ 0 goto error
+::    call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
+::    IF !ERRORLEVEL! NEQ 0 goto error
 ::)
 
 :: 1. KuduSync
@@ -108,6 +108,10 @@ echo "%DEPLOYMENT_TEMP%"
 :: 2. Select node version
 :: call :SelectNodeVersion
 
+echo ""%DEPLOYMENT_TARGET%""
+pushd "%DEPLOYMENT_TARGET%"
+dir
+popd
 :: 3. Install npm packages
 ::IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 ::  pushd "%DEPLOYMENT_TARGET%"
