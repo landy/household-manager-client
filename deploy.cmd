@@ -108,8 +108,8 @@ echo Handling node.js deployment.
 :: 2. Select node version
 :: call :SelectNodeVersion
 
-echo ""%DEPLOYMENT_TARGET%""
-pushd "%DEPLOYMENT_TARGET%"
+echo ""%DEPLOYMENT_SOURCE%""
+pushd "%DEPLOYMENT_SOURCE%"
 dir
 popd
 :: 3. Install npm packages
