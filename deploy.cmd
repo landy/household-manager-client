@@ -88,6 +88,7 @@ goto :EOF
 :Deployment
 echo Handling node.js deployment.
 
+echo "%DEPLOYMENT_TEMP%"
 IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
     echo building application
     pushd "%DEPLOYMENT_TEMP%"
