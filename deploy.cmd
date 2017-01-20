@@ -92,7 +92,7 @@ echo "%DEPLOYMENT_TEMP%"
 ::IF EXIST "%DEPLOYMENT_TEMP%\package.json" (
     echo building application
     pushd "%DEPLOYMENT_TEMP%"
-    dir /s
+    tree /f
     call :ExecuteCmd !NPM_CMD! install 
     IF !ERRORLEVEL! NEQ 0 goto error
     call :ExecuteCmd ".\node_modules\.bin\react-scripts.cmd deploy"
